@@ -50,7 +50,7 @@ public class GamePlayIntentHandler implements RequestHandler {
 
             URL myUrl = null;
             try {
-                myUrl = new URL("http://7795f34b.ngrok.io/slot?value=" + rowAndColumnSlotValue);
+                myUrl = new URL("http://7795f34b.ngrok.io/game/slot?value=" + rowAndColumnSlotValue);
                 HttpURLConnection myURLConnection = (HttpURLConnection) myUrl.openConnection();
                 myURLConnection.setRequestMethod("GET");
                 myURLConnection.connect();
