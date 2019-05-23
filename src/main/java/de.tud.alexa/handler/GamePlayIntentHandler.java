@@ -72,21 +72,6 @@ public class GamePlayIntentHandler implements RequestHandler {
             repromptText =
                     "Bist du noch da? Sag einfach Hilfe, wenn du nicht weiter weist.";
         }
-        if (colSlot != null){
-            colSlotValue = colSlot.getValue();
-
-            speechText =
-                    speechText.concat(" und du hast die Spalte " + colSlotValue + "gewählt!");
-            repromptText =
-                    "Moechtest du nochmal wuerfeln?";
-
-        } else {
-
-            speechText = "Ich habe die Reihe, in der du dein Zug machen willst, leider nicht verstanden.";
-            repromptText =
-                    "Bist du noch da? Sag einfach Hilfe, wenn du nicht weiter weist.";
-        }
-
 
         return input.getResponseBuilder()
                 .withSimpleCard("TicTacToePlaySession", speechText)
