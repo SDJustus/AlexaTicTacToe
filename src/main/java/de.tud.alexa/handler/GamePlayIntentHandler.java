@@ -4,6 +4,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
@@ -24,18 +26,45 @@ public class GamePlayIntentHandler implements RequestHandler {
         Intent intent = intentRequest.getIntent();
         Map<String, Slot> slots = intent.getSlots();
 
-        Slot rowSlot = slots.get("Row");
-        Slot colSlot = slots.get("Column");
-        String speechText, repromptText;
+        Slot rowSlot = slots.get("Row");    //Buchstabe {A,B,C} bzw. {Alpha, Beta, Gamma}
+        Slot colSlot = slots.get("Column"); //Zahl      {1,2,3}
+        String speechText = null;
+        String repromptText;
+        String colSlotValue;
+        String rowSlotValue;
 
-        if(rowSlot != null) {
+        if(rowSlot != null && colSlot != null) {
 
-            String rowSlotValue = rowSlot.getValue();
+            rowSlotValue = rowSlot.getValue();
 
-            speechText =
-                    String.format("Du hast die Reihe " + rowSlotValue + " gewählt.");
-            repromptText =
-                    "Moechtest du nochmal wuerfeln?";
+            if (rowSlotValue.length() != 1) {
+                throw new IllegalArgumentException("Wrong Slot Value for Row Slot... Value was " + rowSlotValue);
+            }
+
+            colSlotValue = colSlot.getValue();
+            if (colSlotValue.length() != 1) {
+                throw new IllegalArgumentException("Wrong Slot Value for Column Slot... Value was " + colSlotValue);
+            }
+
+        String rowAndColumnSlotValue = rowSlotValue.concat(colSlotValue);
+
+            URL myUrl = null;
+            try {
+                myUrl = new URL("http://7795f34b.ngrok.io/slot?value=" + rowAndColumnSlotValue);
+                HttpURLConnection myURLConnection = (HttpURLConnection) myUrl.openConnection();
+                myURLConnection.setRequestMethod("GET");
+                myURLConnection.connect();
+                myURLConnection.getInputStream();
+                myURLConnection.disconnect();
+            } catch (Exception e) {
+                speechText.concat(" mit einem Fehler");
+            }
+
+
+
+
+            speechText = String.format("Du hast die Reihe %s und die Spalte %s gewählt. Der nächste Spieler ist dran!", rowSlotValue, colSlotValue);
+            repromptText = "Welche Reihe und Spalte wählst du?";
 
         } else {
 
@@ -44,7 +73,7 @@ public class GamePlayIntentHandler implements RequestHandler {
                     "Bist du noch da? Sag einfach Hilfe, wenn du nicht weiter weist.";
         }
         if (colSlot != null){
-            String colSlotValue = colSlot.getValue();
+            colSlotValue = colSlot.getValue();
 
             speechText =
                     speechText.concat(" und du hast die Spalte " + colSlotValue + "gewählt!");
