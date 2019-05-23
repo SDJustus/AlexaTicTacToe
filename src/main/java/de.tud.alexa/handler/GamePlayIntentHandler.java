@@ -64,7 +64,7 @@ public class GamePlayIntentHandler implements RequestHandler {
 
 
             speechText = String.format("Du hast die Reihe %s und die Spalte %s gewählt. Der nächste Spieler ist dran!", rowSlotValue, colSlotValue);
-            repromptText = "Welche Reihe und Spalte wählst du?";
+            repromptText = "Bist du noch da?";
 
         } else {
 
