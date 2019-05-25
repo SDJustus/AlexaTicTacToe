@@ -27,7 +27,7 @@ public class TicTacToeStreamHandler extends SkillStreamHandler {
                         new HelpIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new FallbackIntentHandler())
-                .withSkillId("amzn1.ask.skill.75a0c52c-c0dc-46a6-b403-47b4b1265f71")
+                .withSkillId(System.getenv("SKILLID"))
                 .build();
     }
 

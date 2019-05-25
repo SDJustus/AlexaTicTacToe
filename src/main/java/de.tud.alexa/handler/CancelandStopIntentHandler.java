@@ -13,7 +13,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
         return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
     }
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Alles klar, mache einfach mit der Maus oder mit Gesten weiter!";
+        String speechText = "Alles klar. Gut gespielt!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("CancelTicTacToe", speechText)

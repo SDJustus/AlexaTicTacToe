@@ -24,7 +24,7 @@ public class GameEndIntentHandler implements RequestHandler {
         String speechText = "Du hast die Anwendung geschlossen!";
         URL myUrl = null;
         try {
-            myUrl = new URL("http://7795f34b.ngrok.io/stop");
+            myUrl = new URL("http://" + System.getenv().get("NGROK") + ".ngrok.io/application/stop");
             HttpURLConnection myURLConnection = (HttpURLConnection) myUrl.openConnection();
             myURLConnection.setRequestMethod("GET");
             myURLConnection.connect();

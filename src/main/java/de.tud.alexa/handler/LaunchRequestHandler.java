@@ -13,7 +13,7 @@ public class LaunchRequestHandler implements RequestHandler  {
         return input.matches(requestType(LaunchRequest.class));
     }
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Der Wuerfel ist bereit!";
+        String speechText = "Ich bin bereit! Sag 'ich moechte spielen' um zu beginnen";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("LaunchDice", speechText)

@@ -12,10 +12,10 @@ public class HelpIntentHandler implements RequestHandler {
         return input.matches(intentName("AMAZON.HelpIntent"));
     }
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Sag einfach zum Beispiel: 'Wirf einen sechs seitigen Wuerfel' oder 'Wuerfle'";
+        String speechText = "Sag einfach zum Beispiel: 'ich moechte spielen' um zu spielen oder 'ich habe genug gespielt' um das Spiel zu beenden";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("DiceHelp", speechText)
+                .withSimpleCard("TicTacToeHelp", speechText)
                 .withReprompt(speechText)
                 .build();
     }

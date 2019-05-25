@@ -50,7 +50,7 @@ public class GamePlayIntentHandler implements RequestHandler {
 
             URL myUrl = null;
             try {
-                myUrl = new URL("http://7795f34b.ngrok.io/game/slot?value=" + rowAndColumnSlotValue);
+                myUrl = new URL("http://" + System.getenv().get("NGROK") + ".ngrok.io/application/game/slot?value=" + rowAndColumnSlotValue);
                 HttpURLConnection myURLConnection = (HttpURLConnection) myUrl.openConnection();
                 myURLConnection.setRequestMethod("GET");
                 myURLConnection.connect();
@@ -63,7 +63,7 @@ public class GamePlayIntentHandler implements RequestHandler {
 
 
 
-            speechText = String.format("Du hast die Reihe %s und die Spalte %s gewählt. Der nächste Spieler ist dran!", rowSlotValue, colSlotValue);
+            speechText = "Du hast die Reihe "+ rowSlotValue + " und die Spalte " + colSlotValue + " gewaehlt. Der naechste Spieler ist dran!";
             repromptText = "Bist du noch da?";
 
         } else {
