@@ -21,7 +21,7 @@ public class GameEndIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Du hast die Anwendung geschlossen!";
+        String speechText = "Sie haben die Anwendung geschlossen!";
         URL myUrl = null;
         try {
             myUrl = new URL("http://" + System.getenv().get("NGROK") + ".ngrok.io/application/stop");

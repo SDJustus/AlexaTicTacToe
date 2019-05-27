@@ -63,14 +63,14 @@ public class GamePlayIntentHandler implements RequestHandler {
 
 
 
-            speechText = "Du hast die Reihe "+ rowSlotValue + " und die Spalte " + colSlotValue + " gewaehlt. Der naechste Spieler ist dran!";
-            repromptText = "Bist du noch da?";
+            speechText = "Sie haben die Reihe "+ rowSlotValue + " und die Spalte " + colSlotValue + " gewaehlt. Der naechste Spieler ist dran!";
+            repromptText = "Sind Sie noch da?";
 
         } else {
 
-            speechText = "Ich habe die Reihe, in der du dein Zug machen willst, leider nicht verstanden.";
+            speechText = "Ich habe die Reihe, in der sie Ihren Zug machen wollen, leider nicht verstanden.";
             repromptText =
-                    "Bist du noch da? Sag einfach Hilfe, wenn du nicht weiter weist.";
+                    "Sind Sie noch da? Sagen Sie einfach Hilfe, wenn Sie nicht weiter wissen.";
         }
 
         return input.getResponseBuilder()

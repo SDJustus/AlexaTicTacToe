@@ -24,7 +24,7 @@ public class GameRestartIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Du hast das Spiel neu gestartet";
+        String speechText = "Sie haben das Spiel neu gestartet";
         URL myUrl = null;
         try {
              myUrl = new URL("http://" + System.getenv().get("NGROK") + ".ngrok.io/application/restart");
